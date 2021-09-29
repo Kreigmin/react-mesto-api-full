@@ -10,12 +10,11 @@ export function auth(email, password, endPoint) {
   });
 }
 
-export function getContent(token) {
+export function getContent() {
   return fetch(`${BASE_URL}users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   });
 }

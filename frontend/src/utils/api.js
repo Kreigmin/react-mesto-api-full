@@ -15,20 +15,12 @@ class Api {
 
   // method which requests profile data from server and set them
   getUserInfo() {
-    return fetch(this._baseUrl + "/users/me", {
-      headers: {
-        authorization: this._authorization,
-      },
-    }).then(this._checkResponse);
+    return fetch(this._baseUrl + "/users/me").then(this._checkResponse);
   }
 
   // method which requests initial data of cards
   getCards() {
-    return fetch(this._baseUrl + "/cards", {
-      headers: {
-        authorization: this._authorization,
-      },
-    }).then(this._checkResponse);
+    return fetch(this._baseUrl + "/cards").then(this._checkResponse);
   }
 
   // method which send new profile data to server
@@ -36,7 +28,6 @@ class Api {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
       headers: {
-        authorization: this._authorization,
         "Content-Type": this._contentType,
       },
       body: JSON.stringify({
@@ -51,7 +42,6 @@ class Api {
     return fetch(this._baseUrl + "/cards", {
       method: "POST",
       headers: {
-        authorization: this._authorization,
         "Content-Type": this._contentType,
       },
       body: JSON.stringify({
@@ -66,7 +56,6 @@ class Api {
     return fetch(this._baseUrl + "/cards/" + idCard, {
       method: "DELETE",
       headers: {
-        authorization: this._authorization,
         "Content-Type": this._contentType,
       },
     }).then(this._checkResponse);
@@ -76,7 +65,6 @@ class Api {
     return fetch(this._baseUrl + "/cards/likes/" + cardId, {
       method: "PUT",
       headers: {
-        authorization: this._authorization,
         "Content-Type": this._contentType,
       },
       body: JSON.stringify({
@@ -89,7 +77,6 @@ class Api {
     return fetch(this._baseUrl + "/cards/likes/" + idCard, {
       method: "DELETE",
       headers: {
-        authorization: this._authorization,
         "Content-Type": this._contentType,
       },
     }).then(this._checkResponse);
@@ -107,7 +94,6 @@ class Api {
     return fetch(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
       headers: {
-        authorization: this._authorization,
         "Content-Type": this._contentType,
       },
       body: JSON.stringify({
@@ -119,7 +105,6 @@ class Api {
 
 const api = new Api({
   baseUrl: "api.beautiful-places.nomoredomains.club",
-  authorization: "d4c6f8c0-4eea-4fc7-88ea-b49bfd0af7e6",
   contentType: "application/json",
 });
 
