@@ -32,8 +32,8 @@ app.use(requestLogger);
 // app.use(cors);
 
 const allowedCors = [
-  "https://beautiful-places.nomoredomains.club",
-  "http://beautiful-places.nomoredomains.club",
+  "https://api.beautiful-places.nomoredomains.club",
+  "http://api.beautiful-places.nomoredomains.club",
   "localhost:3000",
 ];
 
