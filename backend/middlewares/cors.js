@@ -1,5 +1,6 @@
 const allowedCors = [
   "https://beautiful-places.nomoredomains.club",
+  "http://beautiful-places.nomoredomains.club",
   "localhost:3000",
 ];
 
