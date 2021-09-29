@@ -1,0 +1,22 @@
+.menu__hamburger-btn {
+  background-image: url(../../../images/hamburger.svg);
+  width: 24px;
+  height: 21px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  padding: 0;
+}
+
+.menu__hamburger-btn:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 500px) {
+  .menu__hamburger-btn {
+    display: block;
+  }
+}

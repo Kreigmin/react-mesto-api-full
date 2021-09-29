@@ -1,0 +1,15 @@
+.form__caption-link {
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.form__caption-link:hover {
+  opacity: 0.6;
+}
