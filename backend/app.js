@@ -11,6 +11,7 @@ const { login, createUser } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-error");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const cors = require("./middlewares/cors");
 
 const BASE_ERROR_CODE = 500;
 const { PORT = 3000 } = process.env;
@@ -25,6 +26,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
+
+app.use(cors);
 
 app.post(
   "/signin",
