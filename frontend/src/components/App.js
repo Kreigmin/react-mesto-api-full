@@ -177,10 +177,7 @@ function App() {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
       })
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem("jwt", data.token);
-        }
+      .then(() => {
         setEmail(email);
       })
       .catch(() => {
@@ -195,26 +192,23 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("jwt")) {
-      const jwt = localStorage.getItem("jwt");
-      getContent(jwt)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then((res) => {
-          if (res) {
-            setLoggedIn(true);
-            appHistory.push("/");
-            setEmail(res.data.email);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    getContent()
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
+      .then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          appHistory.push("/");
+          setEmail(res.data.email);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [appHistory]);
 
   function handleEditAvatarClick() {

@@ -1,4 +1,4 @@
-const BASE_URL = "https://auth.nomoreparties.co/";
+const BASE_URL = "https://api.beautiful-places.nomoredomains.club/";
 
 export function auth(email, password, endPoint) {
   return fetch(`${BASE_URL}${endPoint}`, {
@@ -10,12 +10,11 @@ export function auth(email, password, endPoint) {
   });
 }
 
-export function getContent(token) {
+export function getContent() {
   return fetch(`${BASE_URL}users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
   });
 }

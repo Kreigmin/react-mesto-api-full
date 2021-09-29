@@ -14,7 +14,6 @@ function Header({ userEmail, handleLogin }) {
   let history = useHistory();
 
   function signOut() {
-    localStorage.removeItem("jwt");
     handleLogin(false);
     history.push("/sign-in");
   }
