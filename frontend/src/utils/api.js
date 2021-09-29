@@ -103,7 +103,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.beautiful-places.nomoredomains.club",
+  baseUrl: "http://api.beautiful-places.nomoredomains.club",
   contentType: "application/json",
 });
 
