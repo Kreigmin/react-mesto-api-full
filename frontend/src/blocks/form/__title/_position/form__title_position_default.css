@@ -1,9 +1,0 @@
-.form__title_position_default {
-  margin: 0 auto 0 36px;
-}
-
-@media (max-width: 420px) {
-  .form__title_position_default {
-    margin: 0 auto;
-  }
-}

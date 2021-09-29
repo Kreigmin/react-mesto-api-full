@@ -1,9 +1,0 @@
-.menu__container {
-  display: flex;
-}
-
-@media (max-width: 500px) {
-  .menu__container {
-    display: none;
-  }
-}

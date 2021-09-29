@@ -1,9 +1,0 @@
-.form__submit-btn_margin_very-large {
-  margin: 216px auto 0;
-}
-
-@media (max-width: 420px) {
-  .form__submit-btn_margin_very-large {
-    margin-top: 173px;
-  }
-}
