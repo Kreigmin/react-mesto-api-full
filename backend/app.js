@@ -1,3 +1,5 @@
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable consistent-return */
 /* eslint-disable comma-dangle */
 const express = require("express");
 const mongoose = require("mongoose");
@@ -11,7 +13,7 @@ const { login, createUser } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-error");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const cors = require("./middlewares/cors");
+// const cors = require("./middlewares/cors");
 
 const BASE_ERROR_CODE = 500;
 const { PORT = 3000 } = process.env;
@@ -27,7 +29,33 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.use(cors);
+// app.use(cors);
+
+const allowedCors = [
+  "https://beautiful-places.nomoredomains.club",
+  "http://beautiful-places.nomoredomains.club",
+  "localhost:3000",
+];
+
+app.use(function (req, res, next) {
+  const { origin } = req.headers;
+  const requestHeaders = req.headers["Access-Control-Request-Headers"];
+  const { method } = req.method;
+  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  console.log([origin, requestHeaders, method]);
+
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  if (method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+    res.header("Access-Control-Allow-Headers", requestHeaders);
+    return res.end();
+  }
+
+  next();
+});
 
 app.post(
   "/signin",
