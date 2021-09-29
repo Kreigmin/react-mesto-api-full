@@ -118,7 +118,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-25",
+  baseUrl: "api.beautiful-places.nomoredomains.club",
   authorization: "d4c6f8c0-4eea-4fc7-88ea-b49bfd0af7e6",
   contentType: "application/json",
 });
