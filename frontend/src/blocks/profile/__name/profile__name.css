@@ -1,0 +1,23 @@
+.profile__name {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  color: #fff;
+  margin: 0;
+  max-width: 294px;
+  width: 100%;
+  /* Интересно, я думал что переполенения нету потому, что когда вставлял текст lorem текст не выходил за блок,
+  но если это одно слово, то переполнение есть. Спасибо, учту в следующий раз.*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 950px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 1.22;
+    max-width: 189px;
+  }
+}

@@ -1,0 +1,7 @@
+.card__full-img-btn {
+  cursor: pointer;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
