@@ -1,7 +1,6 @@
 class Api {
-  constructor({ baseUrl, authorization, contentType }) {
+  constructor({ baseUrl, contentType }) {
     this._baseUrl = baseUrl;
-    this._authorization = authorization;
     this._contentType = contentType;
   }
 
