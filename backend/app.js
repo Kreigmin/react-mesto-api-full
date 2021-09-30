@@ -1,5 +1,3 @@
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable consistent-return */
 /* eslint-disable comma-dangle */
 const express = require("express");
 const mongoose = require("mongoose");
@@ -13,7 +11,6 @@ const { login, createUser } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-error");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-// const cors = require("./middlewares/cors");
 
 const BASE_ERROR_CODE = 500;
 const { PORT = 3000 } = process.env;
@@ -28,24 +25,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
-
-// app.use(cors);
-
-app.use(function (req, res, next) {
-  // const requestHeaders = req.headers["access-control-request-headers"];
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  const { method } = req.method;
-  console.log([req.headers]);
-
-  res.header("Access-Control-Allow-Origin", "*");
-
-  if (method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-  }
-
-  next();
-});
 
 app.post(
   "/signin",
