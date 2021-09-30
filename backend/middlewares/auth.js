@@ -8,7 +8,7 @@ const {
 
 // eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
-  console.log(req.headers.cookies.jwt);
+  console.log(req.cookies.jwt);
   if (!req.headers.cookie) {
     return next(new ForbiddenError("Необходима авторизация"));
   }

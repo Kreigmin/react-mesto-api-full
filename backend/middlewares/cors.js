@@ -11,7 +11,6 @@ module.exports = (req, res, next) => {
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
   if (allowedCors.includes(origin)) {
     res.header("Access-Control-Allow-Origin", origin);
-    res.header("Access-Control-Allow-Credentials", true);
   }
 
   if (req.method === "OPTIONS") {
@@ -22,7 +21,6 @@ module.exports = (req, res, next) => {
       "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     );
     res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-    res.header("Access-Control-Allow-Credentials", true);
     return res.end();
   }
 
