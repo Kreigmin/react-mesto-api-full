@@ -147,7 +147,7 @@ const signOut = (req, res, next) => {
   } catch (err) {
     return next(new Error("что-то не так"));
   }
-  res.end();
+  res.status(200).send("вы вышли");
 };
 
 module.exports = {
