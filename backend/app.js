@@ -31,25 +31,15 @@ app.use(requestLogger);
 
 // app.use(cors);
 
-const allowedCors = [
-  "https://beautiful-places.nomoredomains.club",
-  "http://beautiful-places.nomoredomains.club",
-  "localhost:3000",
-];
-
 app.use(function (req, res, next) {
   const requestHeaders = req.headers["Access-Control-Request-Headers"];
-  const { method } = req.method;
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  // console.log([origin, requestHeaders, method]);
+  console.log(requestHeaders);
 
   res.header("Access-Control-Allow-Origin", "*");
 
-  if (method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-    res.header("Access-Control-Allow-Headers", requestHeaders);
-    return res.end();
-  }
+  res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+  res.header("Access-Control-Allow-Headers", requestHeaders, "Content-Type");
 
   next();
 });
