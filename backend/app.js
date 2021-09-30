@@ -7,7 +7,7 @@ const { errors, Joi, celebrate } = require("celebrate");
 const validator = require("validator");
 const userRoutes = require("./routes/users");
 const cardRoutes = require("./routes/cards");
-const { login, createUser } = require("./controllers/users");
+const { login, createUser, signOut } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-error");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
@@ -64,6 +64,8 @@ app.use(auth);
 app.use(userRoutes);
 
 app.use(cardRoutes);
+
+app.post("/signout", signOut);
 
 app.use(errorLogger);
 

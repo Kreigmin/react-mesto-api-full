@@ -141,6 +141,15 @@ const login = (req, res, next) => {
     });
 };
 
+const signOut = (req, res, next) => {
+  try {
+    res.clearCookie("jwt");
+  } catch (err) {
+    return next(new Error("что-то не так"));
+  }
+  res.end();
+};
+
 module.exports = {
   createUser,
   getAllUsers,
@@ -149,4 +158,5 @@ module.exports = {
   updateAvatar,
   login,
   getUserById,
+  signOut,
 };
