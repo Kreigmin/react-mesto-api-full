@@ -32,14 +32,17 @@ app.use(requestLogger);
 // app.use(cors);
 
 app.use(function (req, res, next) {
-  const requestHeaders = req.headers["Access-Control-Request-Headers"];
+  // const requestHeaders = req.headers["access-control-request-headers"];
   const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-  console.log(requestHeaders);
+  const { method } = req.method;
+  console.log([req.headers]);
 
   res.header("Access-Control-Allow-Origin", "*");
 
-  res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-  res.header("Access-Control-Allow-Headers", requestHeaders, "Content-Type");
+  if (method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+  }
 
   next();
 });
