@@ -31,8 +31,8 @@ app.use(requestLogger);
 // app.use(cors);
 
 const whitelist = [
-  "http://beautiful-places.nomoredomains.club",
   "https://beautiful-places.nomoredomains.club",
+  "http://beautiful-places.nomoredomains.club",
 ];
 const corsOptions = {
   origin: (origin, callback) => {
@@ -46,7 +46,7 @@ const corsOptions = {
   allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",
   credentials: true,
   preflightContinue: false,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 204,
 };
 
 app.use(cors(corsOptions));
