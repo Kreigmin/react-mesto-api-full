@@ -6,13 +6,14 @@ const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const { errors, Joi, celebrate } = require("celebrate");
 const validator = require("validator");
+const cors = require("cors");
 const userRoutes = require("./routes/users");
 const cardRoutes = require("./routes/cards");
 const { login, createUser, signOut } = require("./controllers/users");
 const auth = require("./middlewares/auth");
 const NotFoundError = require("./errors/not-found-error");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const cors = require("./middlewares/cors");
+// const cors = require("./middlewares/cors");
 
 const BASE_ERROR_CODE = 500;
 const { PORT = 3000 } = process.env;
@@ -27,7 +28,29 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.use(cors);
+// app.use(cors);
+
+const whitelist = [
+  "http://beautiful-places.nomoredomains.club",
+  "https://beautiful-places.nomoredomains.club",
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders:
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+  credentials: true,
+  preflightContinue: false,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 app.get("/crash-test", () => {
   setTimeout(() => {
