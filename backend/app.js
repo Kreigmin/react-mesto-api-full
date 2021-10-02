@@ -30,18 +30,12 @@ app.use(requestLogger);
 
 // app.use(cors);
 
-const whitelist = [
-  "https://beautiful-places.nomoredomains.club",
-  "http://beautiful-places.nomoredomains.club",
-];
+// const whitelist = [
+//   "https://beautiful-places.nomoredomains.club",
+//   "http://beautiful-places.nomoredomains.club",
+// ];
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: "https://beautiful-places.nomoredomains.club",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization",
   credentials: true,
