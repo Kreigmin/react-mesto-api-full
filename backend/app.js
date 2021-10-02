@@ -1,5 +1,6 @@
 /* eslint-disable comma-dangle */
 const express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
@@ -28,6 +29,12 @@ app.use(cookieParser());
 app.use(requestLogger);
 
 app.use(cors);
+
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Сервер сейчас упадёт");
+  }, 0);
+});
 
 app.post(
   "/signin",
