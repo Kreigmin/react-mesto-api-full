@@ -38,6 +38,7 @@ function App() {
   function renderLoading(isLoading) {
     setIsSubmitting(isLoading);
   }
+
   useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getCards(), api.getUserInfo()])
@@ -51,9 +52,8 @@ function App() {
         });
     }
   }, [loggedIn]);
-
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, card.likes, !isLiked)
       .then((newCard) => {
@@ -191,6 +191,13 @@ function App() {
     setLoggedIn(isLogged);
   }
 
+  function handleSignOut() {
+    api.signOut().then(() => {
+      handleLogin(false);
+      appHistory.push("/sign-in");
+    });
+  }
+
   useEffect(() => {
     getContent()
       .then((res) => {
@@ -203,7 +210,7 @@ function App() {
         if (res) {
           setLoggedIn(true);
           appHistory.push("/");
-          setEmail(res.data.email);
+          setEmail(res.email);
         }
       })
       .catch((err) => {
@@ -260,7 +267,7 @@ function App() {
             <Register loggedIn={loggedIn} onRegister={handleRegisterSubmit} />
           </Route>
           <ProtectedRoute path="/" loggedIn={loggedIn}>
-            <Header userEmail={email} handleLogin={handleLogin} />
+            <Header userEmail={email} handleSignOut={handleSignOut} />
             <Main
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
