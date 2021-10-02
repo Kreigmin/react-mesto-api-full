@@ -1,8 +1,7 @@
 const allowedCors = [
   "https://beautiful-places.nomoredomains.club",
   "http://beautiful-places.nomoredomains.club",
-  "https://localhost:3000",
-  "http://localhost:3000",
+  "localhost:3000",
 ];
 
 // eslint-disable-next-line consistent-return
