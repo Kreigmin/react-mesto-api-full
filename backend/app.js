@@ -81,13 +81,13 @@ app.post(
   createUser
 );
 
+app.post("/signout", signOut);
+
 app.use(auth);
 
 app.use(userRoutes);
 
 app.use(cardRoutes);
-
-app.post("/signout", signOut);
 
 app.use((req, res, next) => {
   next(new NotFoundError("Запрашиваемый ресурс не найден"));
