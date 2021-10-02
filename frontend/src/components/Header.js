@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, Route, Switch, useHistory } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 
-function Header({ userEmail, handleLogin }) {
+function Header({ userEmail, handleSignOut }) {
   const [isClicked, setIsClicked] = useState(false);
   const menuActiveClass = `menu__container ${isClicked ? "menu_active" : ""}`;
   const menuBlockActiveClass = `menu__hamburger ${
@@ -10,13 +10,6 @@ function Header({ userEmail, handleLogin }) {
   const menuHamburgerBtnClass = `menu__hamburger-btn ${
     isClicked ? "menu__hamburger-btn_active" : ""
   }`;
-
-  let history = useHistory();
-
-  function signOut() {
-    handleLogin(false);
-    history.push("/sign-in");
-  }
 
   function hamburgerClick() {
     setIsClicked(!isClicked);
@@ -36,7 +29,11 @@ function Header({ userEmail, handleLogin }) {
                 ></button>
                 <div className={menuActiveClass}>
                   <p className="menu__email">{userEmail}</p>
-                  <Link to="sign-in" className="menu__btn" onClick={signOut}>
+                  <Link
+                    to="sign-in"
+                    className="menu__btn"
+                    onClick={handleSignOut}
+                  >
                     Выйти
                   </Link>
                 </div>
