@@ -147,9 +147,9 @@ const signOut = (req, res, next) => {
   try {
     res.clearCookie("jwt");
   } catch (err) {
-    return next(new Error("что-то не так"));
+    return next(new Error("С токеном что-то не так."));
   }
-  res.status(200).send("вы вышли");
+  res.status(200).send({ message: "Вы успешно вышли" });
 };
 
 module.exports = {
