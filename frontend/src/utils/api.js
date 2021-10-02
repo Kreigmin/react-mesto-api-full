@@ -14,18 +14,30 @@ class Api {
 
   // method which requests profile data from server and set them
   getUserInfo() {
-    return fetch(this._baseUrl + "/users/me", {}).then(this._checkResponse);
+    return fetch(this._baseUrl + "/users/me", {
+      credentials: "include",
+    }).then(this._checkResponse);
   }
 
   // method which requests initial data of cards
   getCards() {
-    return fetch(this._baseUrl + "/cards", {}).then(this._checkResponse);
+    return fetch(this._baseUrl + "/cards", {
+      credentials: "include",
+    }).then(this._checkResponse);
+  }
+
+  signOut() {
+    return fetch(this._baseUrl + "/signout", {
+      method: "POST",
+      credentials: "include",
+    }).then(this._checkResponse);
   }
 
   // method which send new profile data to server
   sendProfileDataToServer(profileName, profileJob) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
+      credentials: "include",
       headers: {
         "Content-Type": this._contentType,
       },
@@ -40,6 +52,7 @@ class Api {
   addNewCardToServer(cardName, cardLink) {
     return fetch(this._baseUrl + "/cards", {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": this._contentType,
       },
@@ -54,6 +67,7 @@ class Api {
   deleteCard(idCard) {
     return fetch(this._baseUrl + "/cards/" + idCard, {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": this._contentType,
       },
@@ -61,8 +75,9 @@ class Api {
   }
 
   sendLikeToServer(cardId, likes) {
-    return fetch(this._baseUrl + "/cards/likes/" + cardId, {
+    return fetch(this._baseUrl + "/cards/" + cardId + "/likes", {
       method: "PUT",
+      credentials: "include",
       headers: {
         "Content-Type": this._contentType,
       },
@@ -73,8 +88,9 @@ class Api {
   }
 
   deleteLike(idCard) {
-    return fetch(this._baseUrl + "/cards/likes/" + idCard, {
+    return fetch(this._baseUrl + "/cards/" + idCard + "/likes", {
       method: "DELETE",
+      credentials: "include",
       headers: {
         "Content-Type": this._contentType,
       },
@@ -92,6 +108,7 @@ class Api {
   changeAvatar(avatarLink) {
     return fetch(this._baseUrl + "/users/me/avatar", {
       method: "PATCH",
+      credentials: "include",
       headers: {
         "Content-Type": this._contentType,
       },
@@ -104,7 +121,6 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.beautiful-places.nomoredomains.club",
-  authorization: "d4c6f8c0-4eea-4fc7-88ea-b49bfd0af7e6",
   contentType: "application/json",
 });
 
