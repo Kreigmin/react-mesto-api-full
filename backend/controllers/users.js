@@ -146,7 +146,12 @@ const login = (req, res, next) => {
 
 const signOut = (req, res, next) => {
   try {
-    res.clearCookie("jwt");
+    // res.clearCookie("jwt");
+    res.cookie("jwt", "", {
+      maxAge: 1,
+      httpOnly: true,
+      sameSite: true,
+    });
   } catch (err) {
     return next(new Error("С токеном что-то не так."));
   }
