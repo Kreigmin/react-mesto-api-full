@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
   //   return next(new ForbiddenError("Необходима авторизация"));
   // }
   if (!req.cookies.jwt) {
-    res.send({});
+    res.end();
   }
   const token = req.cookies.jwt;
   let payload;
