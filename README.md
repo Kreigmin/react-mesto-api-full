@@ -6,3 +6,4 @@
 
 Публичный IP-адрес: 130.193.38.107
 Домен: beautiful-places.nomoredomains.club
+Домен сервера api.beautiful-places.nomoredomains.club
