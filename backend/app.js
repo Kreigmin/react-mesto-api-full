@@ -35,7 +35,13 @@ const whitelist = [
   "https://beautiful-places.nomoredomains.club",
 ];
 const corsOptions = {
-  origin: whitelist,
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders:
     "Origin, X-Requested-With, Content-Type, Accept, Authorization",
