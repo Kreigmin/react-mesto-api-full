@@ -132,7 +132,8 @@ const login = (req, res, next) => {
       res.cookie("jwt", token, {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
-        sameSite: true,
+        sameSite: "None",
+        secure: true,
       });
       res.status(200).send({ message: "Вы успешно вошли" });
     })
@@ -150,7 +151,8 @@ const signOut = (req, res, next) => {
     res.cookie("jwt", "", {
       maxAge: 1,
       httpOnly: true,
-      sameSite: true,
+      sameSite: "None",
+      secure: true,
     });
   } catch (err) {
     return next(new Error("С токеном что-то не так."));
