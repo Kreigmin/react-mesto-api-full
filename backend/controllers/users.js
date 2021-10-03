@@ -147,7 +147,6 @@ const login = (req, res, next) => {
 
 const signOut = (req, res, next) => {
   try {
-    // res.clearCookie("jwt");
     res.cookie("jwt", "", {
       maxAge: 1,
       httpOnly: true,
